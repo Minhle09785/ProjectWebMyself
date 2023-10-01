@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html th:replace="~{views/index :: dynamic(~{::title},~{::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Check-Out</title>
+</head>
+<body>
+	<main>
+		
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                    <li class="breadcrumb-item active">Checkout</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+       <div class="col-lg-12" th:replace="~{views/cart/cart :: shoppingCart}"></div>
+        <!-- Checkout Start -->
+        <div class="checkout">
+         
+            <div class="container-fluid"> 
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="checkout-inner">
+                            <div class="billing-address">
+                                <h2>Địa Chỉ Thanh Toán</h2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>User Name</label>
+                                        <div class="form-control" id="username">[[${#request.remoteUser}]]</div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Order Date</label>
+                                        <div class="form-control">{{order.createDate | date:'dd-MM-yyyy'}}</div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Address</label>
+                                        <input class="form-control" ng-model="order.address" type="text" placeholder="Address">
+                                    </div>
+                                </div>
+                            </div>
+ 										<button class="btn" ng-click="order.purchase()">Place Order</button>
+                        </div>
+                        
+                                   
+                    </div>
+                    <!--  -->
+                    <div class="col-lg-4">
+                        <div class="checkout-inner">
+                            <div class="checkout-summary">
+                                <h1>Tổng Đơn hàng</h1>
+                                <div ng-repeat="name in cart.items">
+                                	<p>{{name.name}}<span>${{name.price | number : 2}}</span></p>
+                               	 </div>
+                               	 <div>
+                                <h2>Tổng tiền<span>${{cart.amount | number : 2}}</span></h2>
+                                </div>
+                            </div>
+
+                            <div class="checkout-payment">
+                                <div class="checkout-btn">
+                                    <button ng-click="order.purchase()">Place Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Checkout End -->
+	</main>
+</body>
+</html>
