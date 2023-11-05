@@ -13,7 +13,7 @@
             <div class="user_detail">
                 <div class="input_box">
                     <span class="details">Id Name</span>
-                    <input type="text" th:field="*{username}" placeholder='Enter your ID' name='Id Name' />
+                    <input type="text"  th:field="*{username}" id="username"/>
                 </div>
                 <div class="input_box">
                     <span class="details">Password</span>
@@ -34,9 +34,9 @@
             </div>
             <br>
             <label for="" th:text="${message}"></label>
-            <div class="btn">
+            <div>
                 <i class="pull-left text-danger"></i>
-                <button style='border: none;' type="submit" value='register'>Register</button>
+                <button style='border: none;border-radius: 3px; padding: 10px;background-color: #0866ff;color: #385898;' type="submit" value='register'><b style="color: #ffffff;">Register</b></button>
             </div>
         </form>
     </div>

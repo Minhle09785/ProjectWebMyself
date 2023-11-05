@@ -31,7 +31,7 @@
                                 <a href="/product/list" class="nav-item nav-link">Products</a>
                                 <a href="/product/cart" class="nav-item nav-link">Cart</a>
                                 <th:block th:if="${#request.remoteUser}">
-                                <a href="/product/checkout" class="nav-item nav-link">Checkout</a>
+                                <a href="/product/order/checkout" class="nav-item nav-link">Checkout</a>
                                 <a href="/my/account" class="nav-item nav-link">My Account</a>
 						<li
 							th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAFF')}">

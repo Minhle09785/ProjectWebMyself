@@ -40,10 +40,6 @@ public class productController {
 		return "views/product/product-list";
 	}
 
-	@RequestMapping("/product/checkout")
-	public String checkOut(Model model) {
-		return "views/product/chechout";
-	}
 
 	@RequestMapping("/product/list/product-detail/{id}")
 	public String productDetail(Model model, @PathVariable("id") Integer id, @RequestParam("cid") Optional<String> cid,

@@ -1,5 +1,7 @@
 package com.example.ProjectProducts.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,11 @@ public class secutityController {
 		model.addAttribute("message", "<b style='color: red;'>Logoff Thành công!</b>");
 		return "views/security/login";
 	}
+	
+	@RequestMapping("/product/order/checkout")
+	public String checkOut(Model model) {
+		return "views/product/chechout";
+	}
 
 	@RequestMapping("/my/account")
 	public String getAccount(Model model, HttpServletRequest request) {
@@ -53,14 +60,24 @@ public class secutityController {
 	}
 
 	@RequestMapping("/accountDetails")
-	public String GetAccountDetails(Model model, @ModelAttribute("item") Account account) {
+	public String GetAccountDetails(Model model, @ModelAttribute("item") Account account, Principal principal) {
+		final String username = principal.getName().toString();
+		account.setUsername(username);
 		return "views/security/accountDetails";
 	}
 
 	@PostMapping("/accountDetails")
-	public String PostAccountDetail(Model model, @ModelAttribute("item") Account account) {
-		model.addAttribute("message", "Update Thành công");
+	public String PostAccountDetail(Model model, @ModelAttribute("item") Account account, Principal principal) {
+		
+		try {
+			model.addAttribute("message", "Update Thành công");
 		accountDao.save(account);
+		return "redirect:/accountDetails";
+		
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
 		return "views/security/accountDetails";
 	}
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html th:replace="~{views/index :: dynamic(~{::title},~{::main})}">
+<head>
+<meta charset="UTF-8">
+<title>My-Account</title>
+</head>
+<body >
+<main>
+    <div class='body-container'>
+    <div class="containers">
+        <div class="title">Account Details</div>
+        <form th:action="@{/accountDetails}" th:object="${item}" method="POST">
+            <div class="user_detail">
+                <div class="input_box">
+                    <span class="details">Id Name</span>
+                    <input type="text" th:field="*{username}" placeholder='Enter your ID' name='Id Name' />
+                </div>
+                <div class="input_box">
+                    <span class="details">Password</span>
+                    <input  type="password" th:field="*{password}" placeholder='Enter your Pasoword' name='Password' />
+                </div>
+                <div class="input_box">
+                    <span class="details">Email</span>
+                    <input type="text" th:field="*{email}" placeholder='Enter your Email' name='email' />
+                </div>
+                <div class="input_box">
+                    <span  class="details">FullName</span>
+                    <input type="text" th:field="*{fullname}" placeholder='confirm your FullName' name='FullName' />
+                </div>
+                <div class="input_box">
+                    <span class="details">Photo</span>
+                    <input   type="file" th:field="*{photo}" placeholder='Enter your Image' name='image' />
+                </div>
+            </div>
+            <br>
+            <label for="" th:text="${message}"></label>
+            <div class="btn">
+                <i class="pull-left text-danger"></i>
+                <button style='border: none;' type="submit" value='register'>Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+</main>
+</body>
+</html>
